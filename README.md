@@ -67,12 +67,26 @@ This is list of all of the information required to connect to each service while
 
 Below explains how to build each service with a single line using docker, excluding the volume mounting.
 
+### Mysql
+
 ``` bash
 docker run --name mysql-local -p 3306:3306 -e MYSQL_ROOT_PASSWORD=password -d mysql:latest --default-authentication-plugin=mysql_native_password
+```
 
+### Pgsql
+
+``` bash
 docker run --name pgsql-local -p 5432:5432 -e POSTGRES_PASSWORD=password -d postgres:latest
+```
 
+### Mongo
+
+``` bash
 docker run --name mongo-local -p 27017:27017 -e MONGO_INITDB_ROOT_USERNAME=root -e MONGO_INITDB_ROOT_PASSWORD=password -d mongo:latest
+```
 
+### Redis
+
+``` bash
 docker run --name redis-local -p 6379:6379 -d redis:latest
 ```
