@@ -1,0 +1,41 @@
+version: '3.8'
+services:
+  mysql-local:
+    image: mysql:latest
+    ports:
+      - 3306:3306
+    volumes: 
+      - ./volumes/mysql-local:/var/lib/mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+
+  pgsql-local:
+    image: postgres:latest
+    ports:
+      - 5432:5432
+    volumes: 
+      - ./volumes/pgsql-local:/var/lib/postgresql/data
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: password
+
+  mongo-local:
+    image: mongo:latest
+    ports:
+      - 27017:27017
+    volumes: 
+      - ./volumes/mongo-local:/data/db
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: password
+
+  redis-local:
+    image: redis:latest
+    ports:
+      - 6379:6379
+    volumes: 
+      - ./volumes/redis-local:/data
+    restart: always
