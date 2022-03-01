@@ -1,15 +1,25 @@
 version: '3.8'
 services:
-  mysql-local:
-    image: mysql:latest
+  # mysql-local:
+  #   image: mysql:latest
+  #   ports:
+  #     - 3306:3306
+  #   volumes: 
+  #     - ./volumes/mysql-local:/var/lib/mysql
+  #   command: --default-authentication-plugin=mysql_native_password
+  #   restart: always
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: password
+
+  mariadb-local:
+    image: mariadb:latest
     ports:
       - 3306:3306
     volumes: 
-      - ./volumes/mysql-local:/var/lib/mysql
-    command: --default-authentication-plugin=mysql_native_password
+      - ./volumes/mariadb-local:/var/lib/mysql
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: password
+      MARIADB_ROOT_PASSWORD: password
 
   pgsql-local:
     image: postgres:latest

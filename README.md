@@ -1,6 +1,6 @@
 # Docker Local
 
-This is a small docker compose project to startup the 4 most popular databases (including redis) on your local system. Docker Compose is usually added to a project to set up its environment, but in some cases you simply need access to a database on your local system, that is what this project is designed for. Each containers port is mapped to the default port of the service on your local machine and has volumes mapped to the directory of the docker compose file.
+This is a small docker compose project to startup the 5 most popular databases (MariaDb, MySQL (**Off by default**), PgSQL, Mongo, Redis) on your local system. Docker Compose is usually added to a project to set up its environment, but in some cases you simply need access to a database on your local system, that is what this project is designed for. Each containers port is mapped to the default port of the service on your local machine and has volumes mapped to the directory of the docker compose file.
 
 ## Usage
 
@@ -29,7 +29,16 @@ rm -rf volumes
 
 This is list of all of the information required to connect to each service while running.
 
-### Mysql
+### MariaDB
+
+| Key | Value |
+|--|--|
+| Host | localhost |
+| Port | 3306 |
+| User | root |
+| Password | password |
+
+### Mysql **(Off by default)**
 
 | Key | Value |
 |--|--|
@@ -67,7 +76,13 @@ This is list of all of the information required to connect to each service while
 
 Below explains how to build each service with a single line using docker, excluding the volume mounting.
 
-### Mysql
+### MariaDB
+
+``` bash
+docker run --name mariadb-local -p 3306:3306 -e MARIADB_ROOT_PASSWORD=password -d mariadb:latest
+```
+
+### Mysql **(Off by default)**
 
 ``` bash
 docker run --name mysql-local -p 3306:3306 -e MYSQL_ROOT_PASSWORD=password -d mysql:latest --default-authentication-plugin=mysql_native_password
